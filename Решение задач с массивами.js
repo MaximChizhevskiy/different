@@ -102,5 +102,15 @@ const baseCurrencies = ['USD', 'EUR'];
 const additionalCurrencies = ['UAH', 'RUB', 'CNY'];
 
 function availableCurr(arr, missingCurr) {
-
-}
+    let str = '';
+    (arr.length === 0) ? str = "Нет доступных валют" : str = "Доступные валюты:\n";
+    
+    arr.forEach(function(item, i){
+    
+    if (item !== missingCurr) {
+        str += `${item}\n`;
+    }
+    });
+    
+        return str;
+    }
