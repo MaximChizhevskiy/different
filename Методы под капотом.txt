@@ -1,0 +1,79 @@
+const students = [
+  {
+  name: "Bob", 
+  age: 22,
+  isMarried: true,
+  scrores: 85
+},
+  {
+  name: "Alex", 
+  age: 81,
+  isMarried: true,
+  scrores: 89
+},
+  {
+  name: "Nick", 
+  age: 20,
+  isMarried: false,
+  scrores: 120
+},
+  {
+  name: "John", 
+  age: 19,
+  isMarried: false,
+  scrores: 100
+},
+  ]
+
+// Реализация метода map
+const getStName = students => students.name
+const mapMethod = (arr, fn) => {
+  const resArr = [];
+  for(let i = 0; i < arr.length; i++) {
+    resArr[i] = fn(arr[i])
+  }
+  return resArr
+}
+
+// Реализация метода filter
+const ageCheck = students => students.age > 20
+
+const filterMethod = (arr, filterFn) => {
+  const resArr = [];
+  for(let i = 0; i < arr.length; i++) {
+    if (filterFn(arr[i])){
+      resArr.push(arr[i])
+    }
+  }
+  return resArr
+}
+
+// Реализация метода find
+const findBob = students => students.name === "Bob"
+
+const findMethod = (arr, findFn) => {  
+  for(let i = 0; i < arr.length; i++) {
+    if (findFn(arr[i])){
+       return arr[i]
+    }
+  }   
+}
+
+// Реализация метода pop
+const popMethod = (arr) => {  
+  const lastElem = arr[arr.length -1]
+  arr.length = arr.length - 1
+  return lastElem
+}
+
+
+// Реализация метода indexOf
+const student = students[1];
+
+const indexOfMethod = (arr, el) => {
+   for (let i = 0; i < arr.length; i++) {
+     if (arr[i] === el)
+     return i
+  }    
+    return - 1;
+}
