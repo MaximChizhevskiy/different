@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Интерактивное программирование</title>
+</head>
+<body>
+<h1 id="heading">Поймай меня 10 раз!</h1>
+<h2 id="counter">0</h2>
+<script src="https://code.jquery.com/jquery-2.1.0.js">
+</script>
+<script>
+    var leftOffset = 0;
+    var topOffset = 0;
+    var direction = "right";
+    var clicksCounter = 0;
+    var intervalTime = 120;
+
+    var moveHeading = function () {
+        $("#heading").offset({
+            left: leftOffset,
+            top: topOffset,
+        });
+
+        if (direction === "right") {
+            leftOffset++;
+
+            if (leftOffset > 200) {
+                leftOffset = 200;
+                direction = "down"
+            }
+        }
+
+        if (direction === "down") {
+            topOffset++;
+
+            if (topOffset > 200) {
+                topOffset = 200;
+                direction = "left"
+            }
+        }
+
+        if (direction === "left") {
+            leftOffset--;
+
+            if (leftOffset < 0) {
+                leftOffset = 0;
+                direction = "top"
+            }
+        }
+
+        if (direction === "top") {
+            topOffset--;
+
+            if (topOffset < 0) {
+                leftOffset = 0;
+                direction = "right"
+            }
+        }
+
+    };
+    var intervalId = setInterval(moveHeading, intervalTime);
+
+    var catchHeaderGame = function () {
+        if (clicksCounter === 9) {
+            clicksCounter++;
+            $("#counter").text(clicksCounter)
+            $("#heading").text("Победил!")
+            clearInterval(intervalId); // Останавливаем интервал, если clicksCounter равен 10
+        } else {
+            clicksCounter++;
+            $("#counter").text(clicksCounter)
+            intervalTime /= 2;
+            clearInterval(intervalId); // Останавливаем предыдущий интервал перед созданием нового
+            intervalId = setInterval(moveHeading, intervalTime); // Создаем новый интервал
+            console.log("каунтер" + clicksCounter);
+            console.log("интервал время" + intervalTime);
+            console.log("ID" + intervalId);
+        }
+    };
+
+    $("#heading").click(catchHeaderGame);
+</script>
+</body>
+</html>
