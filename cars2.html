@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p id="winner">1)</p>
+<p id="carOfWinner"></p>
+<p id="loser">2)</p>
+<p id="carOfLoser"></p>
+
+<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+<script>
+    // Функция конструктор
+    var Car = function (x, y, speed) {
+        this.x = x
+        this.y = y
+        this.speed = 15
+        this.draw()
+    }
+
+    Car.prototype.draw = function () {
+        var carHtml = '<img src="http://nostarch.com/images/car.png">'
+
+        this.carElement = $(carHtml)
+
+        this.carElement.css({
+            position: "absolute",
+            left: this.x,
+            top: this.y
+        })
+
+        $("body").append(this.carElement)
+    }
+
+    Car.prototype.moveRight = function (distanceX) {
+        this.x += distanceX
+
+        this.carElement.css({
+            left: this.x,
+            top: this.y
+        })
+    }
+    Car.prototype.moveLeft = function (distanceX) {
+        this.x -= distanceX;
+        this.carElement.css({
+            left: this.x,
+            top: this.y
+        });
+    };
+    Car.prototype.moveUp = function (distanceY) {
+        this.distanceY -= distanceY;
+        this.carElement.css({
+            left: this.x,
+            top: this.y
+        });
+    };
+    Car.prototype.moveDown = function (distanceY) {
+        this.y += distanceY;
+        this.carElement.css({
+            left: this.x,
+            top: this.y
+        });
+    };
+
+    var ferrari = new Car(20, 20)
+    var lamborgini = new Car(20, 200)
+
+
+    if (ferrari.x) {
+        var intervalIdFer = setInterval(function () {
+            ferrari.moveRight(Math.floor(Math.random() * 10))
+            if (ferrari.x >= 1290) {
+                clearInterval(intervalIdFer)
+                if (document.getElementById('carOfWinner').textContent === "") {
+                    $("#carOfWinner").text("Ferrari")
+                } else {
+                    $("#carOfLoser").text("Ferrari")
+                }
+            }
+        }, ferrari.speed)
+    }
+
+    if (lamborgini.x) {
+        var intervalIdLamb = setInterval(function () {
+            lamborgini.moveRight(Math.floor(Math.random() * 10))
+            if (lamborgini.x >= 1290) {
+                clearInterval(intervalIdLamb)
+                if (document.getElementById("carOfWinner").textContent === "") {
+                    $("#carOfWinner").text("Lamborgini")
+                } else {
+                    $("#carOfLoser").text("Lamborgini")
+                }
+            }
+        }, lamborgini.speed)
+    }
+
+
+</script>
+</body>
+</html>
