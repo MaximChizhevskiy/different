@@ -14,6 +14,7 @@ var ctx = canvas.getContext("2d")
 }*/
 //=======================================
 /*ctx.fillStyle = "BurlyWood"
+ctx.lineWidth = 4
 ctx.strokeRect(45, 60, 10, 20)
 ctx.fillRect(0, 80, 100, 10)
 ctx.fillRect(25, 10, 50, 50)
@@ -23,7 +24,29 @@ ctx.fillRect(68,140,10,55)
 ctx.fillRect(68,140,10,55)
 ctx.fillRect(23,140,10,55)*/
 //=====================================
-
+// ctx.strokeStyle = "Turquoise"
+// ctx.lineWidth = 4
+// ctx.beginPath()
+// ctx.moveTo(10, 10)
+// ctx.lineTo(60, 60)
+// ctx.moveTo(60, 10)
+// ctx.lineTo(10, 60)
+// ctx.stroke()
+//====================================
+/*ctx.strokeStyle = "Blue";
+ctx.moveTo(100, 100);
+ctx.lineTo(100, 60);
+ctx.lineTo(130, 30);
+ctx.lineTo(160, 60);
+ctx.lineTo(160, 100);
+ctx.lineTo(100, 100);
+ctx.fill();*/
+//=====================================
+ctx.lineWidth = 2
+ctx.strokeStyle = "Green"
+ctx.beginPath()
+ctx.arc(100,50,40,0,Math.PI*2,false)
+ctx.stroke()
 </script>
 </body>
 </html>
