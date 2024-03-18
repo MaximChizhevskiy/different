@@ -5,13 +5,13 @@
     <title>Canvas</title>
 </head>
 <body>
-<canvas id="canvas" width="200" height="200"></canvas>
+<canvas id="canvas" width="1400" height="1400"></canvas>
 <script>
 var canvas = document.getElementById("canvas")
 var ctx = canvas.getContext("2d")
 /*for (var i = 0; i < 8; i++) {
     ctx.fillRect(i * 10, i * 10, 10, 10)
-}*/
+}
 //=======================================
 /*ctx.fillStyle = "BurlyWood"
 ctx.lineWidth = 4
@@ -24,14 +24,14 @@ ctx.fillRect(68,140,10,55)
 ctx.fillRect(68,140,10,55)
 ctx.fillRect(23,140,10,55)*/
 //=====================================
-// ctx.strokeStyle = "Turquoise"
-// ctx.lineWidth = 4
-// ctx.beginPath()
-// ctx.moveTo(10, 10)
-// ctx.lineTo(60, 60)
-// ctx.moveTo(60, 10)
-// ctx.lineTo(10, 60)
-// ctx.stroke()
+/*ctx.strokeStyle = "Turquoise"
+ctx.lineWidth = 4
+ctx.beginPath()
+ctx.moveTo(10, 10)
+ctx.lineTo(60, 60)
+ctx.moveTo(60, 10)
+ctx.lineTo(10, 60)
+ctx.stroke()*/
 //====================================
 /*ctx.strokeStyle = "Blue";
 ctx.moveTo(100, 100);
@@ -49,32 +49,58 @@ ctx.arc(100,50,40,0,Math.PI*2,false)
 ctx.stroke()*/
 //=====================================
 
-var circle = function (x, y, radius, fillCircle) {
-    if (fillCircle) {
+/*function drawSnowmam(x, y) {
+var coordX = x
+var coordY = y
+    var circle = function (coordX, coordY, radius, fillCircle) {
+    coordX += x
+    coordY += y
+        if (fillCircle) {
+            ctx.beginPath()
+            ctx.arc(coordX, coordY, radius, 0, Math.PI * 2, false)
+            ctx.fill()
+        }
+
         ctx.beginPath()
-        ctx.arc(x, y, radius, 0, Math.PI * 2, false)
-        ctx.fill()
+        ctx.arc(coordX, coordY, radius, 0, Math.PI * 2, false)
+        ctx.stroke()
     }
+    ctx.lineWidth = 5
 
-
-    ctx.beginPath()
-    ctx.arc(x, y, radius, 0, Math.PI * 2, false)
-    ctx.stroke()
+    circle(250, 100, 60, false)
+    circle(250, 250, 90, false)
+    ctx.lineWidth = 2
+    ctx.fillStyle = "Orange"
+    circle(252, 110, 10, true)
+    ctx.fillStyle = "Black"
+    circle(225, 85, 10, true)
+    circle(275, 85, 10, true)
+    circle(250, 250, 10, true)
+    circle(250, 210, 10, true)
+    circle(250, 290, 10, true)
 }
-ctx.lineWidth = 4
-ctx.strokeStyle = "Red"
-circle(100, 100, 10, true)
-ctx.strokeStyle = "Orange"
-circle(100, 100, 20)
-ctx.strokeStyle = "Yellow"
-circle(100, 100, 30);
-ctx.strokeStyle = "Green";
-circle(100, 100, 40);
-ctx.strokeStyle = "Blue";
-circle(100, 100, 50);
-ctx.strokeStyle = "Purple";
-circle(100, 100, 60);
 
+drawSnowmam(50, 50)
+drawSnowmam(350, 50)
+drawSnowmam(700, 50)*/
+//==================================
+var points = [[50, 50], [50, 100], [100, 100], [100, 50], [50, 50]];
+var mysteryPoints = [[50, 50], [50, 100], [25, 120], [100, 50],
+    [70, 90], [100, 90], [70, 120]]
+
+function drawPoints(arrPoints, color, lineWidth) {
+    ctx.fillStyle = color
+    ctx.lineWidth = lineWidth
+    ctx.moveTo(arrPoints[0][0], arrPoints[0][1])
+    for (let i = 1; i < arrPoints.length; i++) {
+        ctx.lineTo(arrPoints[i][0], arrPoints[i][1])
+
+    }
+    ctx.fill()
+}
+
+//drawPoints(points, "Red", 4);
+drawPoints(mysteryPoints, "Green", 5)
 
 </script>
 </body>
