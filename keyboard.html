@@ -7,18 +7,6 @@
 <canvas id="canvas" width="400" height="400"></canvas>
 <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
 <script>
- /* var keyNames = {
-    32: "space", //пробел
-    37: "left", //влево
-    38: "up", //вверх
-    39: "right", //вправо
-    40: "down" //вниз
-  };
-
-  $("body").keydown(function (event) {
-    console.log(keyNames[event.keyCode])
-  })
-*/
  var canvas = document.getElementById("canvas");
  var ctx = canvas.getContext("2d");
  var width = canvas.width;
@@ -39,6 +27,7 @@
    this.y = height / 2
    this.xSpeed = 5
    this.ySpeed = 0
+   this.speed = 5
  }
 
  Ball.prototype.move = function () {
@@ -46,14 +35,14 @@
    this.y += this.ySpeed
 
    if (this.x < 0) {
-     this.x = width
+     this.xSpeed = this.speed
    } else if (this.x > width) {
-     this.x = 0
+     this.xSpeed = -this.speed
    }
    if (this.y < 0) {
-     this.y = height
+     this.ySpeed = this.speed
    } else if (this.y > height) {
-     this.y = 0
+     this.ySpeed = -this.speed
    }
  }
 
@@ -61,18 +50,49 @@
    circle(this.x, this.y, 10, true)
  }
 
+ Ball.prototype.setSpeed = function (speed) {
+   if (speed === "one") {
+     this.speed = 1
+   }
+   else if (speed === "two") {
+     this.speed = 2
+   }
+   else if (speed === "three") {
+     this.speed = 3
+   }
+   else if (speed === "four") {
+     this.speed = 4
+   }
+   else if (speed === "five") {
+     this.speed = 5
+   }
+   else if (speed === "six") {
+     this.speed = 6
+   }
+   else if (speed === "seven") {
+     this.speed = 7
+   }
+   else if (speed === "eight") {
+     this.speed = 8
+   }
+   else if (speed === "nine") {
+     this.speed = 9
+   }
+   this.move()
+ }
+
  Ball.prototype.setDirection = function (direction) {
    if (direction === "up") {
      this.xSpeed = 0
-     this.ySpeed = -5
+     this.ySpeed = -this.speed
    } else if (direction === "down") {
      this.xSpeed = 0
-     this.ySpeed = 5
+     this.ySpeed = this.speed
    } else if (direction === "left") {
-     this.xSpeed = -5
+     this.xSpeed = -this.speed
      this.ySpeed = 0
    } else if (direction === "right") {
-     this.xSpeed = 5
+     this.xSpeed = this.speed
      this.ySpeed = 0
    } else if (direction === "stop") {
      this.xSpeed = 0
@@ -86,20 +106,36 @@
    37: "left",
    39: "right",
    38: "up",
-   40: "down"
+   40: "down",
+ }
+
+ var speeds = {
+   49: "one",
+   50: "two",
+   51: "three",
+   52: "four",
+   53: "five",
+   54: "six",
+   55: "seven",
+   56: "eight",
+   57: "nine",
  }
 
  $("body").keydown(function (event) {
+   var speed = speeds[event.keyCode]
+   ball.setSpeed(speed)
    var direction = keyActions[event.keyCode]
    ball.setDirection(direction)
  })
 
  setInterval(function () {
-   ctx.clearRect(0, 0, width, height)
-   ball.draw()
-   ball.move()
-   ctx.strokeRect(0, 0, width, height)
- }, 30)
+   ctx.clearRect(0, 0, width, height);
+   ball.draw();
+   ball.move();
+   ctx.strokeRect(0, 0, width, height);
+   ball.setSpeed(ball.speed); // Передаем текущую скорость в метод setSpeed()
+ }, 30);
+
 </script>
 </body>
 </html>
